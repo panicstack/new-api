@@ -38,6 +38,7 @@ RUN apt-get update \
 COPY --from=builder2 /build/new-api /
 COPY LICENSE NOTICE THIRD-PARTY-LICENSES.md /licenses/
 EXPOSE 3000
-RUN mkdir -p /app/data/logs
+RUN mkdir -p /app/data/logs \
+    && chmod -R 777 /app/data
 WORKDIR /app/data
 ENTRYPOINT ["/new-api"]
